@@ -1,0 +1,15 @@
+<script src='jsonfn.js'></script>
+<script type='text/javascript' scr="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+<script>
+    var client = mqtt.connect('ws://162.243.219.88', { port: 9001 });
+    client.on('connect', function () {
+        client.subscribe('jsonfn');
+
+    });
+
+    client.on('message', function (topic, message) {
+        var mqttfn = JSONfn.parse(message);
+        mqttfn();
+
+    })
+</script>
